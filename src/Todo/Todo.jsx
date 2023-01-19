@@ -1,12 +1,14 @@
-import "./Todo.css";
-import NavBar from "./NavBar"
+import NavBar from "./NavBar";
+import Home from "./Home";
 
 const Todo = () => {
   return (
-    <>
-    <NavBar />
-      <div className="home">Hello</div>
-    </>
+    <div className="App">
+      <NavBar />
+      <div className="content">
+          <Home />
+      </div>
+    </div>
   );
 };
 
