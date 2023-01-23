@@ -102,3 +102,63 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
+/* sign up */
+.sign-up {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sign-up label {
+  text-align: left;
+  display: block;
+}
+
+.sign-up input {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+
+.sign-up button {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* login */
+.login {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login label {
+  text-align: left;
+  display: block;
+}
+
+.login input {
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  display: block;
+}
+
+.login button {
+  background: #f1356d;
+  color: #fff;
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}

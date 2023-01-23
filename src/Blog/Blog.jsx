@@ -4,6 +4,8 @@ import {Routes, Route} from 'react-router-dom';
 import CreateBlog from "./CreateBlog";
 import BlogDetails from "./BlogDetails";
 import NotFound from "./NotFound";
+import SignUp from "./SignUp";
+import Login from "./Login";
 
 const Todo = () => {
   return (
@@ -14,6 +16,8 @@ const Todo = () => {
             <Route path="/" element={<Home />}/>
             <Route path="/create" element={<CreateBlog />}/>
             <Route path="/blogs/:id" element={<BlogDetails />}/>
+            <Route path="/signup" element={<SignUp />}/>
+            <Route path="/login" element={<Login />}/>
             <Route path="*" element={<NotFound />}/>
           </Routes>
       </div>
