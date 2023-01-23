@@ -3,6 +3,7 @@ import Home from "./Home";
 import {Routes, Route} from 'react-router-dom';
 import CreateBlog from "./CreateBlog";
 import BlogDetails from "./BlogDetails";
+import NotFound from "./NotFound";
 
 const Todo = () => {
   return (
@@ -13,6 +14,7 @@ const Todo = () => {
             <Route path="/" element={<Home />}/>
             <Route path="/create" element={<CreateBlog />}/>
             <Route path="/blogs/:id" element={<BlogDetails />}/>
+            <Route path="*" element={<NotFound />}/>
           </Routes>
       </div>
     </div>
