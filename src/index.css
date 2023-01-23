@@ -14,8 +14,10 @@
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
 }
-.navbar h1 {
+.navbar a h1 {
   color: #f1356d;
+  margin-left: 0px;
+  padding: 0px;
 }
 .navbar .links {
   margin-left: auto;
@@ -131,6 +133,10 @@
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.sign-up a {
+  display: block;
 }
 
 /* login */
