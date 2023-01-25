@@ -6,6 +6,7 @@ import BlogDetails from "./BlogDetails";
 import NotFound from "./NotFound";
 import SignUp from "./SignUp";
 import Login from "./Login";
+import Books from "./Books";
 
 const Todo = () => {
   return (
@@ -18,6 +19,7 @@ const Todo = () => {
             <Route path="/blogs/:id" element={<BlogDetails />}/>
             <Route path="/signup" element={<SignUp />}/>
             <Route path="/login" element={<Login />}/>
+            <Route path="/books" element={<Books />}/>
             <Route path="*" element={<NotFound />}/>
           </Routes>
       </div>

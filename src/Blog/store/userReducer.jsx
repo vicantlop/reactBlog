@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const userSlice = createSlice({
   name: "user",
@@ -9,9 +10,17 @@ export const userSlice = createSlice({
     getUser: async (state, action) => {
       return state.user;
     },
+    getBooks: async (state, action) => {
+      try {
+        const res = await axios.get('/books')
+        console.log(res)
+      } catch (err) {
+        console.log("bsd")
+      }
+    }
   },
 });
 
-export const { getUser } = userSlice.actions;
+export const { getUser, getBooks } = userSlice.actions;
 
 export default userSlice.reducer;
