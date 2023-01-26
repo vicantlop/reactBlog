@@ -5,12 +5,16 @@ dotenv.config({path: path.resolve(__dirname, './.env')});
 const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose');
-const { createUser, getUsers, getUser, deleteUser, updateUser } = require("./controllers/userController");
+const userRoutes = require('./routes/userRoutes')
+
 
 // init app & middleware
 const app = express()
 app.use(morgan('dev'))
 app.use(express.json())
+
+//routes
+app.use('/api/user', userRoutes)
 
 //connnect to db
 mongoose.set("strictQuery", false)
@@ -23,11 +27,3 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((error) => {
     console.log(error)
   })
-
-  //routes
-
-app.get("/:id", getUser)
-app.put("/:id", updateUser)
-app.delete("/:id", deleteUser)
-app.get("/", getUsers)
-app.post("/", createUser)
