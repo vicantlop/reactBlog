@@ -1,14 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
 export const userSlice = createSlice({
   name: "user",
   initialState: {
     user: "hel",
   },
   reducers: {
-    getUser: async (state, action) => {
-      return state.user;
+    createUser: async (state, action) => {
+      console.log(action)
+      try {
+        const res = await axios.post('/api/user', action)
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
     },
     getBooks: async (state, action) => {
       try {
@@ -21,6 +28,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { getUser, getBooks } = userSlice.actions;
+export const { createUser, getBooks } = userSlice.actions;
 
 export default userSlice.reducer;

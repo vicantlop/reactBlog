@@ -6,6 +6,7 @@ const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes')
+const blogRoutes = require('./routes/blogRoutes')
 
 
 // init app & middleware
@@ -15,6 +16,7 @@ app.use(express.json())
 
 //routes
 app.use('/api/user', userRoutes)
+app.use('/api/blog', blogRoutes)
 
 //connnect to db
 mongoose.set("strictQuery", false)
