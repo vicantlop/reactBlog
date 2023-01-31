@@ -10,7 +10,6 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("1324")
     setIsPending(true)
     dispatch(fetchBlogs())
       .unwrap()
