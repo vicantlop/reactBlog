@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "./store/userReducer";
 
 const SignUp = () => {
@@ -13,12 +13,27 @@ const SignUp = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if(user) {
+      navigate('/')
+    }
+  })
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const user = {firstName, lastName, email, username, password}
+    const newUser = {firstName, lastName, email, username, password}
 
-    dispatch(createUser(user))
+    dispatch(createUser(newUser))
+      .unwrap()
+      .then((promiseResult) => {
+        navigate('/')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   return (

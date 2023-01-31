@@ -7,7 +7,7 @@ import NotFound from "./NotFound";
 import SignUp from "./SignUp";
 import Login from "./Login";
 
-const Todo = () => {
+const Blog = () => {
   return (
     <div className="App">
       <NavBar />
@@ -25,4 +25,4 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+export default Blog;
