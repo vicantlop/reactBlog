@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom"
+import { createBlog } from "./store/blogReducer";
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("mario");
   const [isPending, setIsPending] = useState(false)
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate()
 
@@ -15,15 +19,15 @@ const CreateBlog = () => {
 
     setIsPending(true)
 
-    fetch('http://localhost:3000/blogs', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json"},
-      body: JSON.stringify(blog)
-    }).then(() => {
-      setIsPending(false)
-    })
-
-    navigate('/')
+    dispatch(createBlog(blog))
+      .unwrap()
+      .then((promiseResult) => {
+        setIsPending(false)
+        navigate('/')
+      })
+      .catch((rejectedValue) => {
+        console.log(rejectedValue)
+      })
   }
 
   return (
@@ -32,7 +36,7 @@ const CreateBlog = () => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="">Blog title:</label>
         <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)}/>
-        <label htmlFor="">Blog title:</label>
+        <label htmlFor="">Blog body:</label>
         <textarea required value={body} onChange={(e) => setBody(e.target.value)}></textarea>
         <label htmlFor="">Blog author:</label>
         <select onChange={(e) => setAuthor(e.target.value)}>

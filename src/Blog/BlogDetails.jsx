@@ -1,18 +1,39 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import useFetch from "./useFetch"
+import { deleteBlog, fetchBlog } from "./store/blogReducer";
 
 const BlogDetails = () => {
   const { id } = useParams();
-  const {data: blog, error, isPending } = useFetch('http://localhost:3000/blogs/' + id)
+  const { blog } = useSelector(state => state.blog)
+  const dispatch = useDispatch();
+  const [error, setError] = useState(false);
+  const [isPending, setIsPending] = useState(false);
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setIsPending(true)
+    dispatch(fetchBlog(id))
+      .unwrap()
+      .then((promiseResult) => {
+        setIsPending(false)
+      })
+      .catch((rejectedValue) => {
+        setError(rejectedValue)
+      })
+  }, [])
+
   const handleClick = () => {
-    fetch('http://localhost:3000/blogs/' + blog.id, {
-      method: 'DELETE'
-    }).then(() => {
-      navigate('/')
-    })
+    console.log(id)
+    dispatch(deleteBlog(id))
+      .unwrap()
+      .then((promiseResult) => {
+        navigate('/')
+      })
+      .catch((rejectedValue) => {
+        console.log(rejectedValue)
+      })
   }
 
   return (

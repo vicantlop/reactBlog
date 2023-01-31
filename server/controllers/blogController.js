@@ -1,4 +1,3 @@
-const mongoose = require('mongoose')
 const Blog = require('../models/blogModel')
 
 //get all blogs
@@ -14,10 +13,6 @@ const getBlogs = async (req, res) => {
 //get single blog
 const getBlog = async (req, res) => {
   const { id } = req.params
-
-  if(!mongoose.Types.ObjectId.isValid()) {
-    return res.status(404).json({error: "not a valid blog id"})
-  }
 
   try {
     const blog = await Blog.findById(id)
@@ -41,12 +36,8 @@ const createBlog = async (req, res) => {
 const deleteBlog = async (req, res) => {
   const { id } = req.params
 
-  if(!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({error: "not a valid blog id"})
-  }
-
   try {
-    const blog = await Blog.findOneAndDelete(id)
+    const blog = await Blog.findByIdAndDelete(id)
     res.status(200).json(blog)
   } catch (error) {
     res.status(400).json({error: error.message})
@@ -57,12 +48,8 @@ const deleteBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
   const { id } = req.params
 
-  if(!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({error: "not a valid blog id"})
-  }
-
   try {
-    const blog = await Blog.findOneAndUpdate({
+    const blog = await Blog.findByIdAndUpdate(id, {
       ...req.body
     })
     res.status(200).json(blog)

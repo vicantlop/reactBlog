@@ -1,16 +1,32 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import BlogList from "./BlogList";
-import useFetch from "./useFetch";
-
+import { fetchBlogs } from "./store/blogReducer";
 
 const Home = () => {
+  const { blog: blogs } = useSelector((state) => state.blog);
+  const [error, setError] = useState(false);
+  const [isPending, setIsPending] = useState(false);
+  const dispatch = useDispatch();
 
-  const { data: blogs, isPending, error } = useFetch("http://localhost:3000/blogs")
+  useEffect(() => {
+    console.log("1324")
+    setIsPending(true)
+    dispatch(fetchBlogs())
+      .unwrap()
+      .then((originalPromisedResult) => {
+        setIsPending(false)
+      })
+      .catch((rejectedValue) => {
+        setError(rejectedValue)
+      });
+  }, [dispatch]);
 
   return (
     <div className="home">
       { error && <div>{error}</div>}
       { isPending && <div>Loading...</div>}
-      {blogs && <BlogList blogs={blogs} title="All Blogs!" />}
+      {blogs[0] && <BlogList blogs={blogs} title="All Blogs!" />}
     </div>
   );
 };
